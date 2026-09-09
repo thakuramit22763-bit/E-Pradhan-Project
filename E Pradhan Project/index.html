@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-PRADHAN SEVA | Digital Platform for Scheme Awareness & Online Grievance Redressal</title>
+  <meta name="description" content="E-Pradhan Seva - A unified digital platform for citizen government scheme awareness and online local grievance redressal. Diploma IT Minor Project, Government Polytechnic Khatima (Uttarakhand).">
+  <link rel="stylesheet" href="styles.css">
+  <!-- Google Fonts for Indian Government & Modern Clean Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Screen Reader Skip Link (GIGW Accessibility Compliance) -->
+  <a href="#mainContent" class="skip-link">Skip to main content / मुख्य सामग्री पर जाएं</a>
+
+  <!-- GIGW Accessibility Top Bar -->
+  <aside class="gov-accessibility-bar" aria-label="Accessibility and Helpline Toolbar">
+    <div class="container flex-between">
+      <div class="access-left">
+        <span class="gov-tag">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          Government of Uttarakhand / उत्तराखण्ड शासन
+        </span>
+        <span class="helpline-item">
+          📞 CM Helpline: <strong>1905</strong> | Women: <strong>1090</strong> | Disaster: <strong>1077</strong>
+        </span>
+      </div>
+
+      <div class="access-right">
+        <!-- Font Size Scaling -->
+        <div class="access-btn-group" role="group" aria-label="Text Size Controls">
+          <button class="access-btn" data-size="sm" onclick="setFontSize('sm')" title="Small Text">A-</button>
+          <button class="access-btn active" data-size="base" onclick="setFontSize('base')" title="Normal Text">A</button>
+          <button class="access-btn" data-size="lg" onclick="setFontSize('lg')" title="Large Text">A+</button>
+        </div>
+
+        <!-- High Contrast Mode Toggle -->
+        <button class="access-btn" id="contrastToggleBtn" onclick="toggleHighContrast()" title="Toggle High Contrast Mode">
+          🌓 Contrast
+        </button>
+
+        <!-- Bilingual Switcher -->
+        <div class="lang-switch" role="group" aria-label="Language Selector">
+          <button class="lang-btn active" data-lang="en">English</button>
+          <button class="lang-btn" data-lang="hi">हिन्दी</button>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Academic Prototype Notice Strip (Synopsis Protocol) -->
+  <div class="prototype-notice-strip" role="note">
+    <div class="container">
+      <span class="badge" data-i18n="prototypeBadge">ACADEMIC PROTOTYPE</span>
+      <span data-i18n="prototypeNotice">This academic prototype is developed by Diploma IT students (Govt. Polytechnic, Khatima). Illustrative demonstration only.</span>
+    </div>
+  </div>
+
+  <!-- Live Government Notice Ticker (ई-सूचना पट्ट) -->
+  <div class="gov-notice-ticker" role="region" aria-label="Official Announcements Ticker">
+    <div class="ticker-badge">
+      <span class="ticker-dot"></span>
+      <span data-i18n="tickerBadge">📢 ई-सूचना पट्ट / LIVE NOTICE</span>
+    </div>
+    <div class="ticker-track">
+      <div class="ticker-content" id="liveTickerContent">
+        <span class="ticker-item"><strong>[आयुष्मान शिविर]:</strong> ग्राम पंचायत भवन खटीमा में 12 से 15 सितंबर तक निःशुल्क अटल आयुष्मान गोल्डन कार्ड शिविर।</span>
+        <span class="ticker-item"><strong>[PM-KISAN]:</strong> 18वीं किस्त के त्वरित बैंक अंतरण हेतु सभी किसान भाई-बहन भूलेख एवं ई-केवाईसी सत्यापन पूर्ण कराएं।</span>
+        <span class="ticker-item"><strong>[पेयजल हेल्पलाइन]:</strong> जल जीवन मिशन लाइन लीकेज अथवा दूषित जल की ऑनलाइन शिकायत दर्ज करें — समाधान 48 घंटे में।</span>
+        <span class="ticker-item"><strong>[आपदा सतर्कता]:</strong> मौसम विभाग द्वारा भारी वर्षा चेतावनी जारी; किसी भी आपातकाल में जिला कंट्रोल रूम टोल-फ्री 1077 पर संपर्क करें।</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Government Header -->
+  <header class="main-gov-header">
+    <div class="container header-inner">
+      <a href="#heroSection" class="header-brand-group">
+        <div class="emblem-wrapper" title="National Emblem of India">
+          <!-- Ashoka Emblem SVG -->
+          <svg class="emblem-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="46" fill="#0B3B60" stroke="#FF9933" stroke-width="3"/>
+            <circle cx="50" cy="50" r="32" stroke="#FFFFFF" stroke-width="1.5" stroke-dasharray="3 3"/>
+            <path d="M50 18 L55 35 L70 38 L58 48 L62 65 L50 55 L38 65 L42 48 L30 38 L45 35 Z" fill="#FFA000"/>
+            <circle cx="50" cy="50" r="10" fill="#0D8A43"/>
+            <circle cx="50" cy="50" r="4" fill="#FFFFFF"/>
+          </svg>
+        </div>
+        <div class="brand-text-block">
+          <h1>
+            <span data-i18n="portalTitle">E-PRADHAN SEVA</span>
+            <span class="hi-title" data-i18n="hiPortalTitle">ई-प्रधान सेवा</span>
+          </h1>
+          <p class="tagline" data-i18n="tagline">A Digital Platform for Government Scheme Awareness & Online Grievance Redressal</p>
+          <p class="dept-sub" data-i18n="deptSub">Govt. Polytechnic, Khatima | Directorate of Technical Education, Uttarakhand</p>
+        </div>
+      </a>
+
+      <div class="header-actions">
+        <a href="#grievanceSection" class="btn btn-saffron btn-sm">
+          ✍️ <span data-i18n="btnFileComplaint">Submit Grievance</span>
+        </a>
+        <a href="#trackingSection" class="btn btn-primary btn-sm">
+          🔍 <span data-i18n="btnTrackNow">Track Complaint</span>
+        </a>
+        <button class="btn btn-outline btn-sm" onclick="openModal('authModal')">
+          👤 Login / Admin
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Sticky Navigation Bar -->
+  <nav class="gov-navbar" aria-label="Main Navigation">
+    <div class="container nav-container">
+      <ul class="nav-links">
+        <li class="nav-item"><a href="#heroSection" class="nav-link active" data-i18n="navHome">Home</a></li>
+        <li class="nav-item"><a href="#eligibilitySection" class="nav-link" data-i18n="navCalculator">Eligibility Checker</a></li>
+        <li class="nav-item"><a href="#schemesSection" class="nav-link" data-i18n="navSchemes">Government Schemes</a></li>
+        <li class="nav-item"><a href="#impactGallerySection" class="nav-link" data-i18n="navImpact">Impact Gallery</a></li>
+        <li class="nav-item"><a href="#grievanceSection" class="nav-link" data-i18n="navGrievance">Complaint Box</a></li>
+        <li class="nav-item"><a href="#trackingSection" class="nav-link" data-i18n="navTrack">Track Status</a></li>
+        <li class="nav-item"><a href="#citizenDashboardSection" class="nav-link" data-i18n="navCitizen">Citizen Portal</a></li>
+        <li class="nav-item"><a href="#adminSection" class="nav-link" data-i18n="navAdmin">Admin Panel</a></li>
+        <li class="nav-item"><a href="#creditsSection" class="nav-link" data-i18n="navAbout">About Synopsis</a></li>
+      </ul>
+      <div class="nav-auth-slot">
+        <button class="btn btn-outline-white btn-sm" onclick="openModal('acknowledgmentModal')" title="View Last Issued Slip">
+          📄 Last Slip
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content Body -->
+  <main id="mainContent">
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="heroSection">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <div class="section-tag" style="background: rgba(255, 111, 0, 0.2); color: #FFA000;">
+            🇮🇳 Digital India & Panchayati Raj Initiative
+          </div>
+          <h2 data-i18n="heroTitle">Empowering Citizens with Digital Scheme Access & Transparent Redressal</h2>
+          <p class="hero-subtitle" data-i18n="heroSubtitle">
+            A unified rural governance portal connecting citizens with welfare initiatives, local administrative services, and seamless complaint resolution tracking.
+          </p>
+
+          <div class="hero-action-buttons">
+            <a href="#schemesSection" class="btn btn-saffron btn-lg" data-i18n="btnExploreSchemes">Explore Schemes</a>
+            <a href="#grievanceSection" class="btn btn-outline-white btn-lg" data-i18n="btnFileComplaint">Submit Grievance</a>
+            <a href="#trackingSection" class="btn btn-green btn-lg" data-i18n="btnTrackNow">Track Complaint</a>
+          </div>
+
+          <!-- Quick Search Bar -->
+          <div class="quick-search-box">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" style="margin-left: 8px;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" id="heroSearchInput" data-i18n-ph="searchPlaceholder" placeholder="Search welfare schemes, pension, disaster relief, subsidies...">
+            <button class="btn btn-primary btn-sm" onclick="navigateToSection('schemesSection')">Search</button>
+          </div>
+        </div>
+
+        <!-- Hero Visual Showcase Card with High-Res Photo & Real-Time Stats -->
+        <div class="hero-visual-card">
+          <div class="hero-img-wrap">
+            <img src="assets/images/hero_gram_panchayat.jpg" alt="ग्राम पंचायत खटीमा डिजिटल ई-सेवा केंद्र" loading="eager">
+            <div class="hero-img-gradient"></div>
+            <div class="hero-live-pill">
+              <span class="pulsing-dot"></span>
+              <span data-i18n="heroLiveStatus">24x7 Citizen Seva Desk Active</span>
+            </div>
+            <div class="hero-img-caption">
+              <h4>🏛️ <span data-i18n="heroCaptionTitle">Gram Panchayat Khatima Rural Seva Kendra</span></h4>
+              <p data-i18n="heroCaptionSub">Connecting 1,420+ citizens with verified welfare schemes & online grievance resolution</p>
+            </div>
+          </div>
+          <!-- Live SDLC Outcome Metrics Strip -->
+          <div class="hero-quick-stats-strip">
+            <div class="quick-stat-col">
+              <div class="num" id="heroStatCitizens">1,420+</div>
+              <div class="lbl" data-i18n="statCitizens">Citizens</div>
+            </div>
+            <div class="quick-stat-col">
+              <div class="num" id="heroStatSchemes" style="color: #4ade80;">8</div>
+              <div class="lbl" data-i18n="statSchemes">Schemes</div>
+            </div>
+            <div class="quick-stat-col">
+              <div class="num" id="heroStatComplaints" style="color: #60a5fa;">3</div>
+              <div class="lbl" data-i18n="statComplaints">Grievances</div>
+            </div>
+            <div class="quick-stat-col">
+              <div class="num" id="heroStatResolved" style="color: #34d399;">67%</div>
+              <div class="lbl" data-i18n="statResolved">Resolved</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Core 4-Card Flow (Figure 1 in Synopsis) -->
+    <div class="container">
+      <section class="flow-cards-grid" aria-label="Core Project Modules">
+        <a href="#schemesSection" class="flow-card">
+          <div class="flow-icon">🏛️</div>
+          <h3 data-i18n="flow1Title">Scheme Awareness</h3>
+          <p data-i18n="flow1Desc">Browse verified central and Uttarakhand state government schemes with clear eligibility criteria.</p>
+          <span class="flow-link">Explore Portal →</span>
+        </a>
+
+        <a href="#grievanceSection" class="flow-card">
+          <div class="flow-icon" style="color: #ff6f00; background: rgba(255, 111, 0, 0.08);">📋</div>
+          <h3 data-i18n="flow2Title">Online Complaint Box</h3>
+          <p data-i18n="flow2Desc">Report local issues (water, electricity, roads, drainage) directly to the Pradhan office without paperwork.</p>
+          <span class="flow-link" style="color: #ff6f00;">File Online →</span>
+        </a>
+
+        <a href="#trackingSection" class="flow-card">
+          <div class="flow-icon" style="color: #0d8a43; background: rgba(13, 138, 67, 0.08);">🔎</div>
+          <h3 data-i18n="flow3Title">Live Status Tracking</h3>
+          <p data-i18n="flow3Desc">Track your grievance using your unique Complaint ID through every step of the verification pipeline.</p>
+          <span class="flow-link" style="color: #0d8a43;">Check Status →</span>
+        </a>
+
+        <a href="#adminSection" class="flow-card">
+          <div class="flow-icon" style="color: #8b5cf6; background: rgba(139, 92, 246, 0.08);">⚙️</div>
+          <h3 data-i18n="flow4Title">Admin Management</h3>
+          <p data-i18n="flow4Desc">Administrative desk for reviewing complaints, updating progress, and maintaining welfare programs.</p>
+          <span class="flow-link" style="color: #8b5cf6;">Admin Desk →</span>
+        </a>
+      </section>
+    </div>
+
+    <!-- Scheme Eligibility Calculator (पात्रता कैलकुलेटर) -->
+    <section class="page-section calculator-section" id="eligibilitySection">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag" data-i18n="secCalcTag">Smart Citizen Assistance / त्वरित सहायता</span>
+          <h2 class="section-title" data-i18n="secCalcTitle">योजना पात्रता कैलकुलेटर (Scheme Eligibility Checker)</h2>
+          <p class="section-subtitle" data-i18n="secCalcSub">अपनी श्रेणी, वार्षिक आय एवं निवास का चयन करें और तुरंत जानें कि आप किन-किन सरकारी योजनाओं के पात्र हैं।</p>
+        </div>
+
+        <div class="calc-card">
+          <form id="eligibilityForm" onsubmit="handleEligibilityCheck(event)">
+            <div class="calc-grid">
+              <div class="form-group">
+                <label class="form-label" for="calcCategory">
+                  <span data-i18n="calcLabelCategory">1. नागरिक वर्ग / Citizen Category</span>
+                </label>
+                <select id="calcCategory" class="form-control" required>
+                  <option value="all">-- All Categories (समस्त नागरिक) --</option>
+                  <option value="farmer">🌾 Farmer / कृषक परिवार</option>
+                  <option value="senior">🧓 Senior Citizen (60+ वर्ष)</option>
+                  <option value="student">🎓 Girl Child / Student (बालिका/विद्यार्थी)</option>
+                  <option value="youth">💼 Youth & Self-Employment (स्वरोजगार)</option>
+                  <option value="bpl">🏠 Low Income / Houseless (कच्चा मकान/बीपीएल)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="calcIncome">
+                  <span data-i18n="calcLabelIncome">2. वार्षिक पारिवारिक आय / Annual Income</span>
+                </label>
+                <select id="calcIncome" class="form-control" required>
+                  <option value="any">-- Any Income / कोई भी आय सीमा --</option>
+                  <option value="below50k">Below ₹50,000 (गरीबी रेखा से नीचे / BPL)</option>
+                  <option value="below150k">Up to ₹1,50,000 (मध्यम आय)</option>
+                  <option value="above150k">Above ₹1,50,000 (सामान्य)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="calcDomicile">
+                  <span data-i18n="calcLabelDomicile">3. निवास क्षेत्र / Domicile</span>
+                </label>
+                <select id="calcDomicile" class="form-control" required>
+                  <option value="uk_rural">Uttarakhand Gram Panchayat (ग्रामीण)</option>
+                  <option value="uk_urban">Uttarakhand Urban / Nagar Palika (शहरी)</option>
+                </select>
+              </div>
+
+              <div>
+                <button type="submit" class="btn btn-saffron btn-lg" style="width: 100%; white-space: nowrap;">
+                  🔍 <span data-i18n="btnCalcCheck">पात्रता देखें</span>
+                </button>
+              </div>
+            </div>
+          </form>
+
+          <div class="calc-result-banner" id="calcResultBanner">
+            <div>
+              <strong id="calcResultCount">🎉 8 योजनाएं उपलब्ध हैं!</strong>
+              <span id="calcResultText" style="margin-left: 8px;">आपके प्रोफाइल के आधार पर योजनाएं नीचे प्रदर्शित कर दी गई हैं।</span>
+            </div>
+            <button class="btn btn-outline btn-sm" onclick="resetEligibilityFilter()">
+              🔄 <span data-i18n="btnCalcReset">Show All / सभी देखें</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Scheme Awareness Section -->
+    <section class="page-section" id="schemesSection">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag" data-i18n="secSchemesTag">Government Initiatives</span>
+          <h2 class="section-title" data-i18n="secSchemesTitle">Central & State Welfare Schemes</h2>
+          <p class="section-subtitle" data-i18n="secSchemesSub">Search, compare, and understand eligibility requirements and necessary documentation.</p>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="scheme-categories">
+          <button class="cat-btn active" data-cat="all">🏛️ <span data-i18n="catAll">All Schemes</span></button>
+          <button class="cat-btn" data-cat="welfare">🤝 <span data-i18n="catWelfare">Welfare & Pension</span></button>
+          <button class="cat-btn" data-cat="financial">💰 <span data-i18n="catFinancial">Financial & Loans</span></button>
+          <button class="cat-btn" data-cat="disaster">🚨 <span data-i18n="catDisaster">Disaster Relief</span></button>
+          <button class="cat-btn" data-cat="local">🚰 <span data-i18n="catLocal">Local Civic Services</span></button>
+          <button class="cat-btn" data-cat="agri">🌾 <span data-i18n="catAgri">Agriculture & Farmers</span></button>
+        </div>
+
+        <!-- Live Search Bar inside Section -->
+        <div style="max-width: 500px; margin: 0 auto 30px auto;">
+          <input type="text" id="schemeSearchInput" class="form-control" placeholder="Search by scheme name or keywords..." style="border-radius: 25px; padding: 12px 20px;">
+        </div>
+
+        <!-- Schemes Grid Container -->
+        <div class="schemes-grid" id="schemesGrid">
+          <!-- Populated by app.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Online Grievance Submission (Complaint Box) -->
+    <section class="page-section" id="grievanceSection" style="background-color: #eef3f8;">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag" data-i18n="secGrievanceTag">Online Grievance Redressal</span>
+          <h2 class="section-title" data-i18n="secGrievanceTitle">Citizen Complaint Box</h2>
+          <p class="section-subtitle" data-i18n="secGrievanceSub">Submit local problems or scheme-related difficulties directly for administrative action.</p>
+        </div>
+
+        <div class="form-card-container">
+          <div class="form-header-bar">
+            <h3>📝 New Grievance Registration Form</h3>
+            <p>Direct electronic submission to Pradhan Office & concerned local departments. You will receive a unique Complaint ID for tracking.</p>
+          </div>
+
+          <form class="grievance-form" id="grievanceForm">
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label" for="citizenName">
+                  <span data-i18n="formName">Full Name</span> <span class="required">*</span>
+                </label>
+                <input type="text" id="citizenName" name="citizenName" class="form-control" placeholder="e.g. Ramesh Singh Bisht" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="phone">
+                  <span data-i18n="formPhone">Mobile Number</span> <span class="required">*</span>
+                </label>
+                <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" class="form-control" placeholder="10-digit mobile number" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="aadhaar4">
+                  <span data-i18n="formAadhaar">Aadhaar (Last 4 Digits)</span>
+                </label>
+                <input type="text" id="aadhaar4" name="aadhaar4" maxlength="4" pattern="[0-9]{4}" class="form-control" placeholder="e.g. 4921">
+                <div class="form-help-text">For citizen identity verification only (Optional).</div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="village">
+                  <span data-i18n="formVillage">Gram Panchayat / Village / Ward</span> <span class="required">*</span>
+                </label>
+                <input type="text" id="village" name="village" class="form-control" placeholder="e.g. Ward 4, GP Melaghat, Khatima" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="category">
+                  <span data-i18n="formCategory">Grievance Category</span> <span class="required">*</span>
+                </label>
+                <select id="category" name="category" class="form-control" required>
+                  <option value="">-- Select Category / श्रेणी चुनें --</option>
+                  <option value="water">Drinking Water Supply / पेयजल समस्या</option>
+                  <option value="electricity">Electricity & Street Lights / विद्युत व स्ट्रीट लाइट</option>
+                  <option value="road">Roads, Drainage & Potholes / सड़क व नाली समस्या</option>
+                  <option value="sanitation">Waste & Sanitation / सफाई व कचरा प्रबंधन</option>
+                  <option value="scheme">Welfare Scheme Delay / सरकारी योजना लाभ में बाधा</option>
+                  <option value="pension">Pension or DBT Credit Issue / पेंशन भुगतान समस्या</option>
+                  <option value="disaster">Natural Disaster Relief Claim / आपदा मुआवजा दावा</option>
+                  <option value="other">Other Local Governance / अन्य समस्या</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="priority">
+                  <span data-i18n="formPriority">Urgency Level</span> <span class="required">*</span>
+                </label>
+                <select id="priority" name="priority" class="form-control" required>
+                  <option value="Normal">Normal (Routine resolution within 7 days)</option>
+                  <option value="High">Urgent / High Priority (Emergency risk)</option>
+                </select>
+              </div>
+
+              <div class="form-group full-width">
+                <label class="form-label" for="subject">
+                  <span data-i18n="formSubject">Complaint Subject / Short Title</span> <span class="required">*</span>
+                </label>
+                <input type="text" id="subject" name="subject" class="form-control" placeholder="Brief summary of the issue (e.g., Broken water valve near primary school)" required>
+              </div>
+
+              <div class="form-group full-width">
+                <label class="form-label" for="description">
+                  <span data-i18n="formDescription">Detailed Description of Grievance</span> <span class="required">*</span>
+                </label>
+                <textarea id="description" name="description" class="form-control" placeholder="Describe the location, problem details, duration, and people affected..." required></textarea>
+              </div>
+
+              <div class="form-group full-width">
+                <label class="form-label">
+                  <span data-i18n="formUpload">Supporting Document / Photo (Optional)</span>
+                </label>
+                <div class="upload-dropzone" onclick="document.getElementById('fileUploadInput').click()">
+                  <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                  <p><strong>Click to attach image or document</strong></p>
+                  <p style="font-size: 0.8rem; color: #64748b;">Supports JPG, PNG, PDF up to 5MB (Simulated attachment)</p>
+                  <input type="file" id="fileUploadInput" style="display: none;" onchange="showToast('File attached successfully: ' + (this.files[0]?.name || ''), 'info')">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-actions-row">
+              <button type="reset" class="btn btn-outline">Clear Form</button>
+              <button type="submit" class="btn btn-saffron btn-lg" data-i18n="formSubmitBtn">
+                🚀 Submit Grievance Now
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Grievance Tracking Section -->
+    <section class="page-section" id="trackingSection">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag" data-i18n="secTrackTag">Transparency & Accountability</span>
+          <h2 class="section-title" data-i18n="secTrackTitle">Track Grievance Status</h2>
+          <p class="section-subtitle" data-i18n="secTrackSub">Enter your unique Complaint ID (e.g., EPS-UK-2026-1042) to check real-time progress.</p>
+        </div>
+
+        <!-- Workflow Diagram Explanation (Figure 2 in Synopsis) -->
+        <div class="workflow-box">
+          <div class="workflow-header">
+            <h4>Online Grievance Workflow / ऑनलाइन शिकायत प्रक्रिया</h4>
+            <p>5-Stage Lifecycle from Submission to Administrative Resolution</p>
+          </div>
+          <div class="stepper-pipeline">
+            <div class="step-node completed">
+              <div class="step-circle">01</div>
+              <span class="step-label" data-i18n="step1">01 Login</span>
+              <span class="step-sub">लॉगिन</span>
+            </div>
+            <div class="step-node completed">
+              <div class="step-circle">02</div>
+              <span class="step-label" data-i18n="step2">02 Submit</span>
+              <span class="step-sub">शिकायत दर्ज</span>
+            </div>
+            <div class="step-node active">
+              <div class="step-circle">03</div>
+              <span class="step-label" data-i18n="step3">03 Review</span>
+              <span class="step-sub">एडमिन समीक्षा</span>
+            </div>
+            <div class="step-node">
+              <div class="step-circle">04</div>
+              <span class="step-label" data-i18n="step4">04 In Progress</span>
+              <span class="step-sub">स्थिति अपडेट</span>
+            </div>
+            <div class="step-node">
+              <div class="step-circle">05</div>
+              <span class="step-label" data-i18n="step5">05 Resolved</span>
+              <span class="step-sub">समाधान</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Search Box -->
+        <div class="tracking-search-card">
+          <label class="form-label" for="trackingInput" style="font-size: 1rem; margin-bottom: 10px;">
+            Enter Complaint Token / शिकायत संख्या:
+          </label>
+          <div class="tracking-input-group">
+            <input type="text" id="trackingInput" class="form-control" placeholder="e.g. EPS-UK-2026-1042 or EPS-UK-2026-1088" value="EPS-UK-2026-1042" style="text-transform: uppercase; font-weight: bold; font-size: 1.05rem;">
+            <button class="btn btn-primary btn-lg" id="trackingBtn" data-i18n="btnTrack">Check Status</button>
+          </div>
+          <div style="margin-top: 10px; font-size: 0.82rem; color: #64748b;">
+            💡 Quick Demo IDs: 
+            <a href="javascript:void(0)" onclick="document.getElementById('trackingInput').value='EPS-UK-2026-1042'; trackGrievanceById('EPS-UK-2026-1042');" style="color: #0b3b60; font-weight: bold; margin-right: 8px;">EPS-UK-2026-1042 (Resolved)</a> | 
+            <a href="javascript:void(0)" onclick="document.getElementById('trackingInput').value='EPS-UK-2026-1088'; trackGrievanceById('EPS-UK-2026-1088');" style="color: #0b3b60; font-weight: bold; margin-right: 8px;">EPS-UK-2026-1088 (In Progress)</a> |
+            <a href="javascript:void(0)" onclick="document.getElementById('trackingInput').value='EPS-UK-2026-1120'; trackGrievanceById('EPS-UK-2026-1120');" style="color: #0b3b60; font-weight: bold;">EPS-UK-2026-1120 (In Review)</a>
+          </div>
+        </div>
+
+        <!-- Result Container -->
+        <div id="trackingResultContainer">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Grievance Redressal Impact & Before-After Showcase Gallery -->
+    <section class="page-section" id="impactGallerySection" style="background-color: #ffffff;">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag" style="background: rgba(16, 185, 129, 0.1); color: #10b981;" data-i18n="secImpactTag">Civic Impact / नागरिक प्रभाव</span>
+          <h2 class="section-title" data-i18n="secImpactTitle">समाधान गैलरी (Resolution Showcase)</h2>
+          <p class="section-subtitle" data-i18n="secImpactSub">ई-प्रधान सेवा पोर्टल द्वारा प्राप्त जन-समस्याओं के पारदर्शी व त्वरित निस्तारण के प्रमाण</p>
+        </div>
+
+        <div class="impact-grid">
+          <!-- Card 1: Water pipeline -->
+          <div class="impact-card">
+            <div class="impact-img-wrap">
+              <img src="assets/images/impact_water_repair.jpg" alt="पेयजल पाइपलाइन लीकेज मरम्मत" loading="lazy">
+              <span class="impact-badge-resolved">✓ 100% निस्तारित</span>
+            </div>
+            <div class="impact-body">
+              <h4 data-i18n="impact1Title">मुख्य पेयजल पाइपलाइन त्वरित मरम्मत</h4>
+              <p data-i18n="impact1Desc">वार्ड 4, खटीमा में क्षतिग्रस्त पाइपलाइन को जल संस्थान टीम द्वारा 4 दिन में पूरी तरह नया बदलकर सामान्य जलापूर्ति बहाल की गई।</p>
+              <div class="impact-meta">
+                <span><strong>टोकन:</strong> EPS-UK-2026-1042</span>
+                <span class="impact-rating">⭐⭐⭐⭐⭐ 5.0</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: Solar Lighting -->
+          <div class="impact-card">
+            <div class="impact-img-wrap">
+              <img src="assets/images/impact_solar_lights.jpg" alt="सोलर स्ट्रीट लाइट स्थापना" loading="lazy">
+              <span class="impact-badge-resolved">✓ 100% निस्तारित</span>
+            </div>
+            <div class="impact-body">
+              <h4 data-i18n="impact2Title">ग्राम मेलाघाट में सोलर स्ट्रीट लाइट संस्थापन</h4>
+              <p data-i18n="impact2Desc">ग्रामीण संपर्क मार्ग पर अंधेरे व वन्यजीव भय की शिकायत पर 8 नई सोलर एलईडी स्ट्रीट लाइटें स्थापित की गईं।</p>
+              <div class="impact-meta">
+                <span><strong>विभाग:</strong> उरेडा (UREDA) / ग्राम पंचायत</span>
+                <span class="impact-rating">⭐⭐⭐⭐⭐ 5.0</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3: Gram Sabha Hearing -->
+          <div class="impact-card">
+            <div class="impact-img-wrap">
+              <img src="assets/images/impact_gram_sabha.jpg" alt="पारदर्शी खुली ग्राम सभा जनसुनवाई" loading="lazy">
+              <span class="impact-badge-resolved">✓ नियमित जन-सुनवाई</span>
+            </div>
+            <div class="impact-body">
+              <h4 data-i18n="impact3Title">खुली ग्राम सभा में जन-समस्या निवारण</h4>
+              <p data-i18n="impact3Desc">ग्राम पंचायत भवन में प्रत्येक माह प्रधान, सचिव एवं क्षेत्रीय लेखपाल की उपस्थिति में नागरिकों की पेंशन व योजनाओं की प्रत्यक्ष सुनवाई।</p>
+              <div class="impact-meta">
+                <span><strong>उपस्थिति:</strong> 150+ ग्रामवासी</span>
+                <span class="impact-rating">⭐⭐⭐⭐⭐ 5.0</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Citizen Dashboard Section -->
+    <section class="page-section" id="citizenDashboardSection" style="background-color: #f1f5f9;">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Citizen Management</span>
+          <h2 class="section-title">Citizen Self-Service Dashboard</h2>
+          <p class="section-subtitle">Manage personal profile, track submitted grievances, and view scheme recommendations.</p>
+        </div>
+
+        <div class="dashboard-layout">
+          <!-- Sidebar Profile Card -->
+          <div class="dash-sidebar">
+            <div class="user-profile-widget">
+              <div class="user-avatar">RS</div>
+              <h3 style="font-size: 1.15rem; color: #0b3b60;">Ramesh Singh</h3>
+              <p style="font-size: 0.82rem; color: #64748b;">Verified Citizen | Ward 4</p>
+              <div style="margin-top: 8px;">
+                <span class="status-pill status-resolved" style="font-size: 0.72rem;">Active Citizen</span>
+              </div>
+            </div>
+
+            <ul class="dash-nav">
+              <li><button class="dash-nav-btn active">📋 My Grievances</button></li>
+              <li><button class="dash-nav-btn" onclick="navigateToSection('schemesSection')">⭐ Recommended Schemes</button></li>
+              <li><button class="dash-nav-btn" onclick="navigateToSection('grievanceSection')">✍️ Submit New Complaint</button></li>
+              <li><button class="dash-nav-btn" onclick="showToast('Profile details updated.', 'info')">👤 Edit Profile</button></li>
+            </ul>
+          </div>
+
+          <!-- Main Citizen Content -->
+          <div class="dash-content">
+            <div class="metrics-cards-row">
+              <div class="metric-card">
+                <div class="metric-icon" style="background: #e0f2fe; color: #0369a1;">📄</div>
+                <div>
+                  <h4 style="font-size: 1.4rem; color: #0b3b60;">3</h4>
+                  <p style="font-size: 0.8rem; color: #64748b;">Total Grievances</p>
+                </div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-icon" style="background: #dcfce7; color: #15803d;">✓</div>
+                <div>
+                  <h4 style="font-size: 1.4rem; color: #15803d;">1</h4>
+                  <p style="font-size: 0.8rem; color: #64748b;">Resolved</p>
+                </div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-icon" style="background: #fef3c7; color: #b45309;">⏳</div>
+                <div>
+                  <h4 style="font-size: 1.4rem; color: #b45309;">2</h4>
+                  <p style="font-size: 0.8rem; color: #64748b;">In Review / Progress</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="table-responsive">
+              <table class="gov-table">
+                <thead>
+                  <tr>
+                    <th>Complaint ID</th>
+                    <th>Subject</th>
+                    <th>Category</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>EPS-UK-2026-1042</strong></td>
+                    <td>Broken main pipeline near primary school</td>
+                    <td>Drinking Water</td>
+                    <td><span class="status-pill status-resolved">Resolved</span></td>
+                    <td>
+                      <button class="btn btn-outline btn-sm" onclick="trackGrievanceById('EPS-UK-2026-1042'); navigateToSection('trackingSection');">
+                        View Progress
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>EPS-UK-2026-1088</strong></td>
+                    <td>Old age pension installment delayed for Q1 2026</td>
+                    <td>Scheme Pension</td>
+                    <td><span class="status-pill status-progress">In Progress</span></td>
+                    <td>
+                      <button class="btn btn-outline btn-sm" onclick="trackGrievanceById('EPS-UK-2026-1088'); navigateToSection('trackingSection');">
+                        View Progress
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>EPS-UK-2026-1120</strong></td>
+                    <td>Damaged street transformer causing voltage spikes</td>
+                    <td>Electricity</td>
+                    <td><span class="status-pill status-review">In Review</span></td>
+                    <td>
+                      <button class="btn btn-outline btn-sm" onclick="trackGrievanceById('EPS-UK-2026-1120'); navigateToSection('trackingSection');">
+                        View Progress
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Administrator Management Panel -->
+    <section class="page-section" id="adminSection">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag" style="background: rgba(139, 92, 246, 0.1); color: #8b5cf6;">Officer & Pradhan Desk</span>
+          <h2 class="section-title">Administrator Grievance & Scheme Control Panel</h2>
+          <p class="section-subtitle">Review incoming complaints, update resolution status with official remarks, and maintain scheme database.</p>
+        </div>
+
+        <div class="admin-card">
+          <div class="admin-header-row">
+            <div>
+              <h3 style="font-size: 1.25rem; color: #0b3b60;">Grievance Redressal Registry</h3>
+              <p style="font-size: 0.85rem; color: #64748b;">Manage records in accordance with Section 6 & 7 of project synopsis.</p>
+            </div>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+              <select id="adminFilterStatus" class="form-control" style="width: auto; padding: 6px 12px;">
+                <option value="all">All Statuses</option>
+                <option value="pending">Pending</option>
+                <option value="in review">In Review</option>
+                <option value="in progress">In Progress</option>
+                <option value="resolved">Resolved</option>
+              </select>
+              <button class="btn btn-primary btn-sm" onclick="openModal('addSchemeModal')">
+                ➕ Add New Scheme
+              </button>
+              <button class="btn btn-outline btn-sm" onclick="window.print()">
+                🖨️ Export / Print Report
+              </button>
+            </div>
+          </div>
+
+          <!-- Admin Quick Metric Counts -->
+          <div class="metrics-cards-row" style="margin-bottom: 24px;">
+            <div class="metric-card">
+              <div class="metric-icon" style="background: #e2e8f0; color: #0b3b60;">📊</div>
+              <div>
+                <h4 style="font-size: 1.35rem; color: #0b3b60;" id="adminTotalGrievances">3</h4>
+                <p style="font-size: 0.78rem; color: #64748b;">Total Received</p>
+              </div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-icon" style="background: #fef3c7; color: #b45309;">⌛</div>
+              <div>
+                <h4 style="font-size: 1.35rem; color: #b45309;" id="adminPendingGrievances">0</h4>
+                <p style="font-size: 0.78rem; color: #64748b;">Pending Review</p>
+              </div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-icon" style="background: #ede9fe; color: #6d28d9;">⚙️</div>
+              <div>
+                <h4 style="font-size: 1.35rem; color: #6d28d9;" id="adminReviewGrievances">2</h4>
+                <p style="font-size: 0.78rem; color: #64748b;">Under Investigation</p>
+              </div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-icon" style="background: #dcfce7; color: #15803d;">✓</div>
+              <div>
+                <h4 style="font-size: 1.35rem; color: #15803d;" id="adminResolvedGrievances">1</h4>
+                <p style="font-size: 0.78rem; color: #64748b;">Resolved</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Grievance Table -->
+          <div class="table-responsive">
+            <table class="gov-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Citizen & Village</th>
+                  <th>Grievance Summary</th>
+                  <th>Current Status</th>
+                  <th>Filed Date</th>
+                  <th>Admin Action</th>
+                </tr>
+              </thead>
+              <tbody id="adminGrievanceTableBody">
+                <!-- Rendered dynamically via app.js -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Minor Project Synopsis & Team Credits Section (Page 1 & 9 of Synopsis) -->
+    <section class="page-section" id="creditsSection" style="background: #ffffff;">
+      <div class="container">
+        <div class="college-credits-card">
+          <div class="credits-grid">
+            <div>
+              <span class="section-tag" data-i18n="secCreditsTag">Academic Credentials</span>
+              <h2 style="font-size: 1.6rem; color: #0b3b60; font-weight: 800; margin-bottom: 6px;" data-i18n="secCreditsTitle">
+                Minor Project Synopsis Details
+              </h2>
+              <p style="color: #64748b; font-size: 0.92rem; margin-bottom: 18px;" data-i18n="secCreditsSub">
+                Submitted in partial fulfillment of requirements for DIPLOMA in INFORMATION TECHNOLOGY (2026 - 2027)
+              </p>
+
+              <div style="margin-bottom: 12px;">
+                <strong style="color: #0b3b60; font-size: 0.9rem;" data-i18n="institutionLabel">Institution:</strong>
+                <p style="color: #334155; font-size: 0.95rem; font-weight: 600;">
+                  DEPARTMENT OF INFORMATION TECHNOLOGY<br>
+                  GOVERNMENT POLYTECHNIC, KHATIMA<br>
+                  <span style="font-size: 0.85rem; color: #64748b;">(Directorate of Technical Education, Uttarakhand)</span>
+                </p>
+              </div>
+
+              <div>
+                <strong style="color: #0b3b60; font-size: 0.9rem;" data-i18n="guideLabel">Project Guide:</strong>
+                <p style="color: #0d8a43; font-size: 1.05rem; font-weight: 700;">NEERAJ VERMA</p>
+              </div>
+            </div>
+
+            <div>
+              <strong style="color: #0b3b60; font-size: 0.92rem; display: block; margin-bottom: 8px;" data-i18n="teamLabel">
+                Project Team Members (Students):
+              </strong>
+              <div class="team-members-list">
+                <span class="member-chip">🎓 KUNAL MEHRA</span>
+                <span class="member-chip">🎓 AMIT</span>
+                <span class="member-chip">🎓 ANKIT</span>
+                <span class="member-chip">🎓 MUSKAN</span>
+                <span class="member-chip">🎓 AMIT GOSWMI</span>
+              </div>
+
+              <div style="margin-top: 24px; padding: 14px 18px; background: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1;">
+                <h5 style="color: #0b3b60; font-size: 0.88rem; margin-bottom: 4px;">System Architecture & Protocol:</h5>
+                <p style="font-size: 0.8rem; color: #64748b; line-height: 1.4;">
+                  Frontend: HTML5, Semantic UI, Vanilla CSS (GIGW Compliant), Modular JavaScript.<br>
+                  Backend Architecture: PHP Application Layer, MariaDB/MySQL Relational Database.<br>
+                  Deployment Target: Academic local XAMPP environment & cloud readiness.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Government Portal Footer -->
+  <footer class="gov-footer">
+    <div class="container footer-top">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+            <span style="font-size: 1.6rem;">🏛️</span>
+            <div>
+              <h5 style="margin: 0; padding: 0;">E-PRADHAN SEVA</h5>
+              <span style="font-size: 0.75rem; color: #94a3b8;">Government of Uttarakhand Initiative</span>
+            </div>
+          </div>
+          <p style="font-size: 0.82rem; line-height: 1.5; color: #94a3b8;">
+            An academic research web platform dedicated to rural scheme enlightenment, citizen empowerment, and accountable grievance resolution tracking.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h5>Core Services</h5>
+          <ul class="footer-links">
+            <li><a href="#schemesSection">Scheme Awareness</a></li>
+            <li><a href="#grievanceSection">Submit Online Grievance</a></li>
+            <li><a href="#trackingSection">Live 5-Stage Status Tracking</a></li>
+            <li><a href="#citizenDashboardSection">Citizen Dashboard</a></li>
+            <li><a href="#adminSection">Admin Management Desk</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Helpline Directory</h5>
+          <ul class="footer-links">
+            <li><a href="tel:1905">CM Helpline: 1905</a></li>
+            <li><a href="tel:1090">Women Powerline: 1090</a></li>
+            <li><a href="tel:1077">Disaster Emergency: 1077</a></li>
+            <li><a href="tel:112">Emergency Service: 112</a></li>
+            <li><a href="tel:18001804104">Kisan Call Center: 1800-180-1551</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Academic Department</h5>
+          <p style="font-size: 0.82rem; color: #94a3b8; line-height: 1.5;">
+            Dept. of Information Technology<br>
+            Government Polytechnic, Khatima<br>
+            Dist: Udham Singh Nagar, Uttarakhand<br>
+            Guide: Neeraj Verma
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>© 2026 - 2027 E-Pradhan Seva. Academic Minor Project by IT Diploma Students, Govt. Polytechnic Khatima. Designed in compliance with GIGW protocols.</p>
+    </div>
+  </footer>
+
+  <!-- ==================== MODALS ==================== -->
+
+  <!-- Scheme Detail Modal -->
+  <div class="modal-backdrop" id="schemeModal" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 class="modal-title">Government Scheme Overview</h3>
+        <button class="modal-close" onclick="closeModal('schemeModal')">✕</button>
+      </div>
+      <div class="modal-body" id="schemeDetailContent">
+        <!-- Injected via app.js -->
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" onclick="closeModal('schemeModal')">Close</button>
+        <a id="schemeDetailApplyLink" href="#" target="_blank" rel="noopener" class="btn btn-saffron">
+          🌐 Proceed to Official Department Portal
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Acknowledgment Slip Modal -->
+  <div class="modal-backdrop" id="acknowledgmentModal" role="dialog" aria-modal="true">
+    <div class="modal-box" style="max-width: 780px;">
+      <div class="modal-header no-print">
+        <h3 class="modal-title">Official Grievance Registration Receipt</h3>
+        <button class="modal-close" onclick="closeModal('acknowledgmentModal')">✕</button>
+      </div>
+      <div class="modal-body" id="acknowledgmentSlipContainer">
+        <!-- Rendered dynamically -->
+      </div>
+      <div class="modal-footer no-print">
+        <button class="btn btn-outline" onclick="closeModal('acknowledgmentModal')">Close</button>
+        <button class="btn btn-primary" onclick="window.print()">🖨️ Print / Save PDF Receipt</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin Action Modal (Status Updater) -->
+  <div class="modal-backdrop" id="adminActionModal" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 class="modal-title">Review Grievance & Update Status</h3>
+        <button class="modal-close" onclick="closeModal('adminActionModal')">✕</button>
+      </div>
+      <div class="modal-body">
+        <div style="background: #f8fafc; padding: 12px 16px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #e2e8f0;">
+          <strong style="color: #0b3b60; font-size: 1.1rem;" id="modalAdminComplaintId">EPS-UK-2026-XXXX</strong>
+          <p style="font-size: 0.85rem; color: #475569; margin-top: 4px;" id="modalAdminCitizenInfo"></p>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="adminNewStatus">Update Resolution Status</label>
+          <select id="adminNewStatus" class="form-control">
+            <option value="Pending">Pending (लंबित)</option>
+            <option value="In Review">In Review (समीक्षाधीन - Field Verification)</option>
+            <option value="In Progress">In Progress (कार्यवाही प्रगति पर - Action Initiated)</option>
+            <option value="Resolved">Resolved (सफलतापूर्वक निस्तारित - Closed)</option>
+            <option value="Rejected">Rejected (निरस्त - Not Eligible / Duplicate)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="adminOfficerName">Authorized Officer Name / Designation</label>
+          <input type="text" id="adminOfficerName" class="form-control" value="Neeraj Verma (Authorized Officer, GP Khatima)">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="adminOfficerRemarks">Official Action Remarks / Department Resolution</label>
+          <textarea id="adminOfficerRemarks" class="form-control" rows="4" placeholder="Enter inspection findings, work orders issued, or resolution details for citizen transparency..."></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" onclick="closeModal('adminActionModal')">Cancel</button>
+        <button class="btn btn-saffron" onclick="saveAdminGrievanceStatus()">💾 Save & Notify Citizen</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add New Scheme Modal (Admin) -->
+  <div class="modal-backdrop" id="addSchemeModal" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 class="modal-title">Add Government Welfare Scheme</h3>
+        <button class="modal-close" onclick="closeModal('addSchemeModal')">✕</button>
+      </div>
+      <form onsubmit="handleAddScheme(event)">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label">Scheme Title (English)</label>
+            <input type="text" name="schemeTitle" class="form-control" placeholder="e.g. Chief Minister Solar Rooftop Yojana" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">योजना का नाम (हिन्दी)</label>
+            <input type="text" name="schemeTitleHi" class="form-control" placeholder="उदा. मुख्यमंत्री सौर ऊर्जा स्वरोजगार योजना">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Category</label>
+            <select name="schemeCategory" class="form-control" required>
+              <option value="welfare">Welfare & Pension</option>
+              <option value="financial">Financial & Loans</option>
+              <option value="disaster">Disaster Relief</option>
+              <option value="local">Local Civic Services</option>
+              <option value="agri">Agriculture & Farmers</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Department</label>
+            <input type="text" name="schemeDept" class="form-control" placeholder="e.g. UREDA, Uttarakhand" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Benefits / Financial Assistance</label>
+            <textarea name="schemeBenefits" class="form-control" rows="2" placeholder="Subsidies, grants, or equipment provided..." required></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Eligibility Criteria</label>
+            <textarea name="schemeEligibility" class="form-control" rows="2" placeholder="Who can apply..." required></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Required Documents</label>
+            <textarea name="schemeDocs" class="form-control" rows="2" placeholder="Aadhaar, Land certificate, Bank passbook..." required></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Official Portal Link</label>
+            <input type="url" name="schemeLink" class="form-control" placeholder="https://..." value="https://uk.gov.in">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" onclick="closeModal('addSchemeModal')">Cancel</button>
+          <button type="submit" class="btn btn-green">Publish Scheme</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Login Modal -->
+  <div class="modal-backdrop" id="authModal" role="dialog" aria-modal="true">
+    <div class="modal-box" style="max-width: 440px;">
+      <div class="modal-header">
+        <h3 class="modal-title">Secure Portal Login</h3>
+        <button class="modal-close" onclick="closeModal('authModal')">✕</button>
+      </div>
+      <div class="modal-body">
+        <div style="background: #f1f5f9; padding: 12px; border-radius: 8px; margin-bottom: 20px; font-size: 0.85rem; color: #475569;">
+          <strong>Pre-configured Demo Credentials:</strong><br>
+          • <strong>Admin:</strong> <code>admin@epradhan.gov.in</code> / <code>admin</code><br>
+          • <strong>Citizen:</strong> <code>citizen@epradhan.gov.in</code> / <code>password</code>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email or Username</label>
+          <input type="email" id="loginEmail" class="form-control" value="admin@epradhan.gov.in">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <input type="password" id="loginPass" class="form-control" value="admin">
+        </div>
+        <button class="btn btn-primary" style="width: 100%; margin-top: 10px;" onclick="closeModal('authModal'); showToast('Logged in successfully as Administrator!', 'success'); navigateToSection('adminSection');">
+          🔐 Authenticate & Enter
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Emergency SOS Button -->
+  <button class="floating-sos-btn" onclick="openModal('emergencyModal')" title="Emergency Helpline Directory">
+    <span class="sos-pulse"></span>
+    <span data-i18n="floatingSosBtn">🚨 आपातकालीन सेवा (SOS)</span>
+  </button>
+
+  <!-- Emergency Helplines Modal -->
+  <div class="modal-backdrop" id="emergencyModal" role="dialog" aria-modal="true">
+    <div class="modal-box" style="max-width: 600px;">
+      <div class="modal-header" style="background: #fef2f2; border-bottom: 2px solid #f87171;">
+        <h3 class="modal-title" style="color: #991b1b;" data-i18n="emergencyModalTitle">🚨 महत्वपूर्ण आपातकालीन हेल्पलाइन नंबर</h3>
+        <button class="modal-close" onclick="closeModal('emergencyModal')">✕</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 0.88rem; color: #64748b; margin-bottom: 14px;" data-i18n="emergencyModalDesc">
+          आपातकाल अथवा प्राकृतिक आपदा की स्थिति में तुरंत नीचे दिए गए टोल-फ्री नंबरों पर संपर्क करें (24x7 सक्रिय):
+        </p>
+        <div class="emergency-grid">
+          <a href="tel:1905" class="emergency-card">
+            <div class="em-icon">🏛️</div>
+            <div class="em-title" data-i18n="em1">मुख्यमंत्री हेल्पलाइन</div>
+            <div class="em-number">1905</div>
+          </a>
+          <a href="tel:1077" class="emergency-card">
+            <div class="em-icon">🚨</div>
+            <div class="em-title" data-i18n="em2">आपदा प्रबंधन (USDMA)</div>
+            <div class="em-number">1077</div>
+          </a>
+          <a href="tel:1090" class="emergency-card">
+            <div class="em-icon">👩</div>
+            <div class="em-title" data-i18n="em3">महिला हेल्पलाइन</div>
+            <div class="em-number">1090</div>
+          </a>
+          <a href="tel:112" class="emergency-card">
+            <div class="em-icon">🚓</div>
+            <div class="em-title" data-i18n="em4">राष्ट्रीय आपात सेवा</div>
+            <div class="em-number">112</div>
+          </a>
+          <a href="tel:18001801551" class="emergency-card">
+            <div class="em-icon">🌾</div>
+            <div class="em-title" data-i18n="em5">किसान कॉल सेंटर</div>
+            <div class="em-number">1800-180-1551</div>
+          </a>
+          <a href="tel:104" class="emergency-card">
+            <div class="em-icon">🏥</div>
+            <div class="em-title" data-i18n="em6">स्वास्थ्य परामर्श</div>
+            <div class="em-number">104</div>
+          </a>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" onclick="closeModal('emergencyModal')" data-i18n="btnClose">बंद करें (Close)</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+  <!-- Main JavaScript File -->
+  <script src="app.js"></script>
+</body>
+</html>
